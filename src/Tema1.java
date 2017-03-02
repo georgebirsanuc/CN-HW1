@@ -1,7 +1,7 @@
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
-
-import sun.dc.pr.Rasterizer;
+import java.util.Map;
 
 public class Tema1 {
 
@@ -55,11 +55,10 @@ public class Tema1 {
 		double time1, time2, time3, time4, time5, time6;
 		double timeSim1, timeSim2, timeSim3, timeSim4, timeSim5, timeSim6;
 
-		time1 = time2 = time3 = time4 = time5 = time6 = 
-				timeSim1 = timeSim2 = timeSim3 = timeSim4 = timeSim5 = timeSim6 = 0;
+		time1 = time2 = time3 = time4 = time5 = time6 = timeSim1 = timeSim2 = timeSim3 = timeSim4 = timeSim5 = timeSim6 = 0;
 
 		double startTime, endTime;
-		
+
 		m1 = m2 = m3 = m4 = m5 = m6 = 0;
 		List<Double> rezultateP1 = new ArrayList<>();
 		List<Double> rezultateP2 = new ArrayList<>();
@@ -84,58 +83,58 @@ public class Tema1 {
 			rezultateP1.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5));
 			endTime = System.currentTimeMillis();
 			time1 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP2.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7));
 			endTime = System.currentTimeMillis();
 			time2 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP3.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9));
 			endTime = System.currentTimeMillis();
 			time3 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP4.add(x - 0.166d * Math.pow(x, 3) + 0.00833d * Math.pow(x, 5) + C3 * Math.pow(x, 7)
 					+ C4 * Math.pow(x, 9));
 			endTime = System.currentTimeMillis();
 			time4 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP5.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
 					+ C5 * Math.pow(x, 11));
 			endTime = System.currentTimeMillis();
 			time5 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP6.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
 					+ C5 * Math.pow(x, 11) + C6 * Math.pow(x, 13));
 			endTime = System.currentTimeMillis();
 			time6 += endTime - startTime;
-			
+
 			// calcul polinoame simplificate
 			Double y = Math.pow(x, 2);
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP1opt.add(x * (1 + y * (-C1 + C2 * y)));
 			endTime = System.currentTimeMillis();
 			timeSim1 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP2opt.add(x * (1 + y * (-C1 + y * (C2 - C3 * y))));
 			endTime = System.currentTimeMillis();
 			timeSim2 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP3opt.add(x * (1 + y * (-C1 + y * (C2 + y * (-C3 + C4 * y)))));
 			endTime = System.currentTimeMillis();
 			timeSim3 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP4opt.add(x * (1 + y * (-0.166d + y * (0.00833d + y * (-C3 + C4 * y)))));
 			endTime = System.currentTimeMillis();
 			timeSim4 += endTime - startTime;
-			
+
 			startTime = System.currentTimeMillis();
 			rezultateP5opt.add(x * (1 + y * (-C1 + y * (C2 + y * (-C3 + y * (C4 - C5 * y))))));
 			endTime = System.currentTimeMillis();
@@ -165,12 +164,17 @@ public class Tema1 {
 			mo5 += Math.abs(rezultateP5opt.get(i) - sinX.get(i));
 			mo6 += Math.abs(rezultateP6opt.get(i) - sinX.get(i));
 		}
-		// m1 /= 10000;
-		// m2 /= 10000;
-		// m3 /= 10000;
-		// m4 /= 10000;
-		// m5 /= 10000;
-		// m6 /= 10000;
+
+		Map<String, Double> erori = new LinkedHashMap<>();
+		erori.put("P1", m1);
+		erori.put("P2", m2);
+		erori.put("P3", m3);
+		erori.put("P4", m4);
+		erori.put("P5", m5);
+		erori.put("P6", m6);
+
+		erori = MapUtil.sortByValue(erori);
+		
 		System.out.println("Eroare cumulata rez P1 = " + m1 + " |---| Eroare cumulata rez P1 simplificat = " + mo1
 				+ "\n\tSimplificat e mai bun = " + (mo1 < m1));
 		System.out.println("Eroare cumulata rez P2 = " + m2 + " |---| Eroare cumulata rez P2 simplificat = " + mo2
@@ -188,6 +192,11 @@ public class Tema1 {
 		System.out.println("Timp executie P3 = " + time3 + "Timp executie P3 simplificat = " + timeSim3);
 		System.out.println("Timp executie P4 = " + time4 + "Timp executie P4 simplificat = " + timeSim4);
 		System.out.println("Timp executie P5 = " + time5 + "Timp executie P5 simplificat = " + timeSim5);
-		System.out.println("Timp executie P6 = " + time6 + "Timp executie P6 simplificat = " + timeSim6);
+		System.out.println("Timp executie P6 = " + time6 + "Timp executie P6 simplificat = " + timeSim6 + '\n');
+
+		for (Map.Entry<String, Double> entry : erori.entrySet()){
+		    System.out.println(entry.getKey() + " = " + entry.getValue());
+		}
+		
 	}
 }
