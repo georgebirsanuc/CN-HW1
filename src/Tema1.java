@@ -85,30 +85,30 @@ public class Tema1 {
 			time1 += endTime - startTime;
 
 			startTime = System.currentTimeMillis();
-			rezultateP2.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7));
+			rezultateP2.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) - C3 * Math.pow(x, 7));
 			endTime = System.currentTimeMillis();
 			time2 += endTime - startTime;
 
 			startTime = System.currentTimeMillis();
-			rezultateP3.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9));
+			rezultateP3.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) - C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9));
 			endTime = System.currentTimeMillis();
 			time3 += endTime - startTime;
 
 			startTime = System.currentTimeMillis();
-			rezultateP4.add(x - 0.166d * Math.pow(x, 3) + 0.00833d * Math.pow(x, 5) + C3 * Math.pow(x, 7)
+			rezultateP4.add(x - 0.166d * Math.pow(x, 3) + 0.00833d * Math.pow(x, 5) - C3 * Math.pow(x, 7)
 					+ C4 * Math.pow(x, 9));
 			endTime = System.currentTimeMillis();
 			time4 += endTime - startTime;
 
 			startTime = System.currentTimeMillis();
-			rezultateP5.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
-					+ C5 * Math.pow(x, 11));
+			rezultateP5.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) - C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
+					- C5 * Math.pow(x, 11));
 			endTime = System.currentTimeMillis();
 			time5 += endTime - startTime;
 
 			startTime = System.currentTimeMillis();
-			rezultateP6.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) + C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
-					+ C5 * Math.pow(x, 11) + C6 * Math.pow(x, 13));
+			rezultateP6.add(x - C1 * Math.pow(x, 3) + C2 * Math.pow(x, 5) - C3 * Math.pow(x, 7) + C4 * Math.pow(x, 9)
+					- C5 * Math.pow(x, 11) + C6 * Math.pow(x, 13));
 			endTime = System.currentTimeMillis();
 			time6 += endTime - startTime;
 
@@ -187,12 +187,15 @@ public class Tema1 {
 				+ "\n\tSimplificat e mai bun = " + (mo5 < m5));
 		System.out.println("Eroare cumulata rez P6 = " + m6 + " |---| Eroare cumulata rez P6 simplificat = " + mo6
 				+ "\n\tSimplificat e mai bun = " + (mo6 < m6));
-		System.out.println("\nTimp executie P1 = " + time1 + "Timp executie P1 simplificat = " + timeSim1);
-		System.out.println("Timp executie P2 = " + time2 + "Timp executie P2 simplificat = " + timeSim2);
-		System.out.println("Timp executie P3 = " + time3 + "Timp executie P3 simplificat = " + timeSim3);
-		System.out.println("Timp executie P4 = " + time4 + "Timp executie P4 simplificat = " + timeSim4);
-		System.out.println("Timp executie P5 = " + time5 + "Timp executie P5 simplificat = " + timeSim5);
-		System.out.println("Timp executie P6 = " + time6 + "Timp executie P6 simplificat = " + timeSim6 + '\n');
+		
+		System.out.println("\nTimp executie P1 = " + time1 + " |---| Timp executie P1 simplificat = " + timeSim1);
+		System.out.println("Timp executie P2 = " + time2 + " |---| Timp executie P2 simplificat = " + timeSim2);
+		System.out.println("Timp executie P3 = " + time3 + " |---| Timp executie P3 simplificat = " + timeSim3);
+		System.out.println("Timp executie P4 = " + time4 + " |---| Timp executie P4 simplificat = " + timeSim4);
+		System.out.println("Timp executie P5 = " + time5 + " |---| Timp executie P5 simplificat = " + timeSim5);
+		System.out.println("Timp executie P6 = " + time6 + " |---| Timp executie P6 simplificat = " + timeSim6);
+		System.out.println("Timp total = " + (time1 + time2 + time3 + time4 + time5 + time6));
+		System.out.println("Timp total polinoame simplificate = " + (timeSim1 + timeSim2 + timeSim3 + timeSim4 + timeSim5 + timeSim6) + '\n');
 
 		for (Map.Entry<String, Double> entry : erori.entrySet()){
 		    System.out.println(entry.getKey() + " = " + entry.getValue());
