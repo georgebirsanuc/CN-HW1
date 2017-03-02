@@ -33,8 +33,9 @@ public class Tema1 {
 	}
 
 	static void pb2(double u) {
-		// System.out.println((1d + u) + u);
-		// System.out.println(1d + (u + u));
+		System.out.println("Neasociativitate adunare: ");
+		System.out.println("(1 + u) + u = " + (1d + u) + u);
+		System.out.println("1 + (u + u) = " + 1d + (u + u));
 		double x, y, z, p1, p2;
 		do {
 			x = Math.random();
