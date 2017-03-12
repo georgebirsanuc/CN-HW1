@@ -3,7 +3,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Tema1 {
+public class Homework1 {
 
 	static final double C1 = 0.16666666666666666666666666666667;
 	static final double C2 = 0.00833333333333333333333333333333;
